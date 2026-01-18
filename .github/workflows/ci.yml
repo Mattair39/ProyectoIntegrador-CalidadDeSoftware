@@ -1,0 +1,69 @@
+name: Quality Code CI
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Clonar el repositorio
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # Paso 2: Configurar JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      # Paso 3: Ejecutar tests y build
+      - name: Build and Test
+        run: mvn clean test
+
+      # Paso 4: Generar reporte de cobertura con JaCoCo
+      - name: Generate JaCoCo Coverage Report
+        run: mvn jacoco:report
+
+      # Paso 5: Ejecutar Checkstyle
+      - name: Checkstyle Analysis
+        run: mvn checkstyle:check
+        continue-on-error: false
+
+      # Paso 6: Ejecutar PMD
+      - name: PMD Analysis
+        run: mvn pmd:pmd
+        continue-on-error: false
+
+      # Paso 7: Verificar métricas de cobertura
+      - name: Verify Coverage
+        run: mvn jacoco:check
+        continue-on-error: true
+
+      # Paso 8: Subir artefactos generados
+      - name: Upload Quality Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Quality-Reports
+          path: |
+            target/site/jacoco/
+            target/site/checkstyle.html
+            target/site/pmd.html
+            target/surefire-reports/
+
+      # Paso 9: Publicar resultados de tests
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            target/surefire-reports/*.xml
