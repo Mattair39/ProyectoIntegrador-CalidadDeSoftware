@@ -2,6 +2,7 @@ package com.studentmanager.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +37,13 @@ class StudentTest {
     void testSetInvalidGrade() {
         Student student = new Student("John Doe", 85.5);
         assertThrows(IllegalArgumentException.class, () -> student.setGrade(-10));
+    }
+
+    @Test
+    void testToString() {
+        Student student = new Student("John Doe", 85.5);
+        String result = student.toString();
+        assertTrue(result.contains("John Doe"));
+        assertTrue(result.contains("85.5"));
     }
 }

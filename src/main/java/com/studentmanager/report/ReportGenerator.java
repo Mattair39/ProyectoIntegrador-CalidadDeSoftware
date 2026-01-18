@@ -4,15 +4,15 @@ import com.studentmanager.model.Student;
 import java.util.List;
 
 /**
- * Interface for generating student reports.
- * This interface follows OCP by allowing different report formats
- * without modifying existing code.
+ * Interfaz para generar reportes de estudiantes. Esta interfaz sigue OCP
+ * permitiendo diferentes formatos
+ * de reportes sin modificar el código existente.
  */
 public interface ReportGenerator {
-    /**
-     * Generates a report from a list of students.
-     *
-     * @param students the list of students to report
-     */
-    void generate(List<Student> students);
+  /**
+   * Genera un reporte desde una lista de estudiantes.
+   *
+   * @param students la lista de estudiantes a reportar
+   */
+  void generate(List<Student> students);
 }

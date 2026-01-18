@@ -4,37 +4,46 @@ import com.studentmanager.model.Student;
 import java.util.List;
 
 /**
- * Repository interface for Student storage operations.
- * This interface follows OCP by allowing different implementations
- * without modifying client code.
+ * Interfaz de repositorio para operaciones de almacenamiento de Student. Esta
+ * interfaz sigue OCP permitiendo
+ * diferentes implementaciones sin modificar el código cliente.
  */
 public interface StudentRepository {
-    /**
-     * Adds a student to the repository.
-     *
-     * @param student the student to add
-     */
-    void add(Student student);
+  /**
+   * Agrega un estudiante al repositorio.
+   *
+   * @param student el estudiante a agregar
+   */
+  void add(Student student);
 
-    /**
-     * Retrieves all students.
-     *
-     * @return list of all students
-     */
-    List<Student> findAll();
+  /**
+   * Recupera todos los estudiantes.
+   *
+   * @return lista de todos los estudiantes
+   */
+  List<Student> findAll();
 
-    /**
-     * Finds a student by name.
-     *
-     * @param name the student's name
-     * @return the student, or null if not found
-     */
-    Student findByName(String name);
+  /**
+   * Busca un estudiante por nombre.
+   *
+   * @param name el nombre del estudiante
+   * @return el estudiante, o null si no se encuentra
+   */
+  Student findByName(String name);
 
-    /**
-     * Returns the total number of students.
-     *
-     * @return student count
-     */
-    int count();
+  /**
+   * Retorna el número total de estudiantes.
+   *
+   * @return conteo de estudiantes
+   */
+  int count();
+
+  /**
+   * Remueve un estudiante por nombre y calificación.
+   *
+   * @param name  el nombre del estudiante
+   * @param grade la calificación del estudiante
+   * @return true si fue removido, false en caso contrario
+   */
+  boolean remove(String name, double grade);
 }

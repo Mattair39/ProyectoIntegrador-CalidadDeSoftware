@@ -1,65 +1,65 @@
 package com.studentmanager.model;
 
 /**
- * Represents a student with a name and grade.
- * This class follows SRP by only handling student data.
+ * Representa un estudiante con nombre y calificación. Esta clase sigue SRP
+ * manejando solo datos del estudiante.
  */
 public class Student {
-    private String name;
-    private double grade;
+  private final String name;
+  private double grade;
 
-    /**
-     * Creates a new Student.
-     *
-     * @param name  the student's name
-     * @param grade the student's grade
-     * @throws IllegalArgumentException if name is null or empty, or grade is
-     *                                  negative
-     */
-    public Student(String name, double grade) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null or empty");
-        }
-        if (grade < 0) {
-            throw new IllegalArgumentException("Grade cannot be negative");
-        }
-        this.name = name;
-        this.grade = grade;
+  /**
+   * Crea un nuevo Estudiante.
+   *
+   * @param name  el nombre del estudiante
+   * @param grade la calificación del estudiante
+   * @throws IllegalArgumentException si el nombre es nulo o vacío, o la
+   *                                  calificación es negativa
+   */
+  public Student(String name, double grade) {
+    if (name == null || name.trim().isEmpty()) {
+      throw new IllegalArgumentException("Name cannot be null or empty");
     }
+    if (grade < 0) {
+      throw new IllegalArgumentException("Grade cannot be negative");
+    }
+    this.name = name;
+    this.grade = grade;
+  }
 
-    /**
-     * Gets the student's name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Obtiene el nombre del estudiante.
+   *
+   * @return el nombre
+   */
+  public String getName() {
+    return name;
+  }
 
-    /**
-     * Gets the student's grade.
-     *
-     * @return the grade
-     */
-    public double getGrade() {
-        return grade;
-    }
+  /**
+   * Obtiene la calificación del estudiante.
+   *
+   * @return la calificación
+   */
+  public double getGrade() {
+    return grade;
+  }
 
-    /**
-     * Sets the student's grade.
-     *
-     * @param grade the new grade
-     * @throws IllegalArgumentException if grade is negative
-     */
-    public void setGrade(double grade) {
-        if (grade < 0) {
-            throw new IllegalArgumentException("Grade cannot be negative");
-        }
-        this.grade = grade;
+  /**
+   * Establece la calificación del estudiante.
+   *
+   * @param grade la nueva calificación
+   * @throws IllegalArgumentException si la calificación es negativa
+   */
+  public void setGrade(double grade) {
+    if (grade < 0) {
+      throw new IllegalArgumentException("Grade cannot be negative");
     }
+    this.grade = grade;
+  }
 
-    @Override
-    public String toString() {
-        return "Student{name='" + name + "', grade=" + grade + "}";
-    }
+  @Override
+  public String toString() {
+    return "Student{name='" + name + "', grade=" + grade + "}";
+  }
 }
