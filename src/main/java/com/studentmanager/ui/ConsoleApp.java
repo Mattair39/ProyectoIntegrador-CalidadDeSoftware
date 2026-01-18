@@ -240,4 +240,20 @@ public class ConsoleApp {
     System.out.println("║  Hasta pronto.                            ║");
     System.out.println("╚════════════════════════════════════════════╝\n");
   }
+
+  /**
+   * Punto de entrada principal de la aplicación.
+   *
+   * @param args argumentos de línea de comandos (no utilizados)
+   */
+  public static void main(String[] args) {
+    com.studentmanager.repository.StudentRepository repository =
+        new com.studentmanager.repository.InMemoryStudentRepository();
+    com.studentmanager.report.ReportGenerator reportGenerator =
+        new com.studentmanager.report.ConsoleReportGenerator();
+    StudentManager manager = new StudentManager(repository, reportGenerator);
+
+    ConsoleApp app = new ConsoleApp(manager);
+    app.start();
+  }
 }
