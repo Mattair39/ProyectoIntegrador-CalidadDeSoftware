@@ -319,4 +319,12 @@ class ConsoleAppTest {
     void testEmptyListThenAddThenList() {
         executeApp("2\n1\nStudent\n75\n2\n4\n");
     }
+
+  @Test
+  void testMainMethod() {
+    // Test the static main() method entry point - Simulates exit immediately
+    String input = "4\n";
+    System.setIn(new ByteArrayInputStream(input.getBytes()));
+    ConsoleApp.main(new String[]{});
+  }
 }
